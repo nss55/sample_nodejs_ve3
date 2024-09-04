@@ -76,7 +76,7 @@ jobs:
         # be deployed to ECS.
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3 .
         #docker push $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY_NAME:latest
+        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:reactVE3" >> $GITHUB_OUTPUT
 
     # - name: Fill in the new image ID in the Amazon ECS task definition
