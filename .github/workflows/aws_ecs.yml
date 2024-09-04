@@ -67,9 +67,11 @@ jobs:
 
     - name: Build, tag, and push image to Amazon ECR
       run: |
-        docker build -t myreact_ve3 .
-        docker tag myreact_ve3:latest public.ecr.aws/g1z7w4v4/myreact_ve3:latest
-        docker push public.ecr.aws/g1z7w4v4/myreact_ve3:latest
+        docker build -t my_ve3_repo .
+        docker tag my_ve3_repo:latest 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:latest
+        #docker push public.ecr.aws/g1z7w4v4/myreact_ve3:latest
+        docker push 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:latest
+
         
 
     # - name: Fill in the new image ID in the Amazon ECS task definition
