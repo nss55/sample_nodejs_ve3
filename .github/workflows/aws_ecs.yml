@@ -61,8 +61,7 @@ jobs:
         aws-secret-access-key: ${{ secrets.SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: Login to Amazon ECR
-      id: login-ecr
+    - name: Log in to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Build, tag, and push image to Amazon ECR
@@ -77,7 +76,6 @@ jobs:
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3 .
         #docker push $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3
         docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:reactVE3
-        echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:reactVE3" >> $GITHUB_OUTPUT
 
     # - name: Fill in the new image ID in the Amazon ECS task definition
     #   id: task-def
