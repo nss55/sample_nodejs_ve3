@@ -73,9 +73,10 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker build -t $ECR_REPOSITORY:latest .
-        #docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
-        docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+        docker build -t myreact_ve3 .
+        docker tag myreact_ve3:latest public.ecr.aws/g1z7w4v4/myreact_ve3:latest
+        docker push public.ecr.aws/g1z7w4v4/myreact_ve3:latest
+        #docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
 
     # - name: Fill in the new image ID in the Amazon ECS task definition
     #   id: task-def
