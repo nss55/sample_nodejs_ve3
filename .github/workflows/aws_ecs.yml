@@ -70,9 +70,9 @@ jobs:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         # IMAGE_TAG: ${{ reactVE3 }}
       run: |
-        Build a docker container and
-        push it to ECR so that it can
-        be deployed to ECS.
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS.
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3 .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:reactVE3
         echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:reactVE3" >> $GITHUB_OUTPUT
