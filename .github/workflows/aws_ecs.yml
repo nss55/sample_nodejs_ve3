@@ -34,8 +34,8 @@ env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
   AWS_REGION: ap-south-1                  # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: myreact_ve3          # set this to your Amazon ECR repository name
-  #ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
-  #ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
+  ECS_SERVICE: ve3_service                 # set this to your Amazon ECS service name
+  ECS_CLUSTER: ve3_nodeapp                 # set this to your Amazon ECS cluster name
   #ECS_TASK_DEFINITION: MY_ECS_TASK_DEFINITION # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: ve3_nodeapp           # set this to the name of the container in the
@@ -85,10 +85,10 @@ jobs:
         container-name: ${{ env.CONTAINER_NAME }}
         image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:node_ve3
 
-    # - name: Deploy Amazon ECS task definition
-    #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-    #   with:
-    #     task-definition: ${{ steps.task-def.outputs.task-definition }}
-    #     service: ${{ env.ECS_SERVICE }}
-    #     cluster: ${{ env.ECS_CLUSTER }}
-    #     wait-for-service-stability: true
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+        task-definition: ${{ steps.task-def.outputs.task-definition }}
+        service: ${{ env.ECS_SERVICE }}
+        cluster: ${{ env.ECS_CLUSTER }}
+        wait-for-service-stability: true
