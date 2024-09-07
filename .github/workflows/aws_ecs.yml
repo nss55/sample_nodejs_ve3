@@ -71,7 +71,7 @@ jobs:
       id: build-image
       run: |
         docker build -t my_ve3_repo .
-        docker tag my_ve3_repo:latest 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:latest
+        docker tag my_ve3_repo:latest 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:node_ve3
         sudo docker push 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:node_ve3
 
         
