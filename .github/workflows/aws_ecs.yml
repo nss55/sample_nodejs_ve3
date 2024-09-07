@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-  AWS_REGION: us-east-1                  # set this to your preferred AWS region, e.g. us-west-1
+  AWS_REGION: ap-south-1                  # set this to your preferred AWS region, e.g. us-west-1
   ECR_REPOSITORY: myreact_ve3          # set this to your Amazon ECR repository name
   #ECS_SERVICE: MY_ECS_SERVICE                 # set this to your Amazon ECS service name
   #ECS_CLUSTER: MY_ECS_CLUSTER                 # set this to your Amazon ECS cluster name
@@ -72,7 +72,7 @@ jobs:
       run: |
         docker build -t my_ve3_repo .
         docker tag my_ve3_repo:latest 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:latest
-        sudo docker push 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:latest
+        sudo docker push 343218224661.dkr.ecr.ap-south-1.amazonaws.com/my_ve3_repo:node_ve3
 
         
 
@@ -83,7 +83,7 @@ jobs:
         task-definition: nodejs-app-task-definition.json
 
         container-name: ${{ env.CONTAINER_NAME }}
-        image: ${{ steps.build-image.outputs.image }}
+        image: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/${{ secrets.ECR_REPOSITORY }}:node_ve3
 
     # - name: Deploy Amazon ECS task definition
     #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
